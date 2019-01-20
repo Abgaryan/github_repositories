@@ -20,6 +20,7 @@ public class GithubRepositoryListFragment extends Fragment {
         return new GithubRepositoryListFragment();
     }
 
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,

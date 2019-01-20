@@ -33,6 +33,9 @@ android {
         sourceCompatibility = '1.8'
         targetCompatibility = '1.8'
     }
+    dataBinding {
+        enabled = true
+    }
 }
 
 dependencies {
@@ -40,9 +43,14 @@ dependencies {
     implementation "androidx.appcompat:appcompat:$project.appcompat"
     implementation "androidx.constraintlayout:constraintlayout:$project.constraintlayout"
     implementation "androidx.legacy:legacy-support-v4:$project.support"
+    implementation "androidx.recyclerview:recyclerview:$project.support"
+    implementation "androidx.cardview:cardview:$project.support"
 
     // Arch
     implementation "androidx.lifecycle:lifecycle-extensions:$project.lifecycle_extensions"
+    annotationProcessor "androidx.lifecycle:lifecycle-compiler:$project.lifecycle_extensions"
+    implementation "androidx.lifecycle:lifecycle-runtime:$project.lifecycle_extensions"
+
 
     // Retrofit
     implementation "com.squareup.retrofit2:retrofit:$project.retrofit"

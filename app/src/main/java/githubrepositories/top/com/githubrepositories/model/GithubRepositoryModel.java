@@ -2,7 +2,7 @@ package githubrepositories.top.com.githubrepositories.model;
 
 import java.util.Date;
 
-public class GithubRepository {
+public class GithubRepositoryModel {
     public long id;
     public String name;
     public String full_name;

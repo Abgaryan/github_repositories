@@ -5,15 +5,21 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import javax.inject.Inject;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.lifecycle.ViewModelProviders;
 import githubrepositories.top.com.githubrepositories.R;
+import githubrepositories.top.com.githubrepositories.dagger.Injectable;
 import githubrepositories.top.com.githubrepositories.view_model.GithubRepositoryDetailsViewModel;
 
-public class GithubRepositoryDetailsFragment extends Fragment {
+public class GithubRepositoryDetailsFragment extends Fragment implements Injectable {
 
+    @Inject
+    ViewModelProvider.Factory viewModelFactory;
     private GithubRepositoryDetailsViewModel mViewModel;
 
     public static GithubRepositoryDetailsFragment newInstance() {
@@ -29,8 +35,7 @@ public class GithubRepositoryDetailsFragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        mViewModel = ViewModelProviders.of(this).get(GithubRepositoryDetailsViewModel.class);
-        // TODO: Use the ViewModel
+        mViewModel = ViewModelProviders.of(this,viewModelFactory).get(GithubRepositoryDetailsViewModel.class);
     }
 
 }

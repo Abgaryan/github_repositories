@@ -1,7 +1,18 @@
 package githubrepositories.top.com.githubrepositories.view_model;
 
-import androidx.lifecycle.ViewModel;
+import android.app.Application;
 
-public class GithubRepositoryDetailsViewModel extends ViewModel {
-    // TODO: Implement the ViewModel
+import javax.inject.Inject;
+
+import androidx.annotation.NonNull;
+import androidx.lifecycle.AndroidViewModel;
+import githubrepositories.top.com.githubrepositories.repository.GithubRepository;
+
+public class GithubRepositoryDetailsViewModel extends AndroidViewModel {
+
+    @Inject
+    public GithubRepositoryDetailsViewModel(@NonNull GithubRepository githubRepository, @NonNull Application application) {
+        super(application);
+    }
+
 }

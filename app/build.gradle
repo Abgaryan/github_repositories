@@ -1,0 +1,44 @@
+project.ext {
+    appcompat = "1.1.0-alpha01"
+    constraintlayout = "2.0.0-alpha3"
+    lifecycle_extensions = "2.1.0-alpha01"
+    support = "1.0.0"
+    junit = "4.12"
+    runner = "1.1.1"
+    espresso_core = "3.1.1"
+}
+
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 28
+    defaultConfig {
+        applicationId "githubrepositories.top.com.githubrepositories"
+        minSdkVersion 21
+        targetSdkVersion 28
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation "androidx.appcompat:appcompat:$project.appcompat"
+    implementation "androidx.constraintlayout:constraintlayout:$project.constraintlayout"
+    implementation "androidx.legacy:legacy-support-v4:$project.support"
+
+    // Arch
+    implementation "androidx.lifecycle:lifecycle-extensions:$project.lifecycle_extensions"
+
+
+    testImplementation "junit:junit:$project.junit"
+    androidTestImplementation "androidx.test:runner:$project.runner"
+    androidTestImplementation "androidx.test.espresso:espresso-core:$project.espresso_core"
+}

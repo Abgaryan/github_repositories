@@ -5,12 +5,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import java.util.Objects;
+
 import javax.inject.Inject;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Lifecycle;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.lifecycle.ViewModelProviders;
 import githubrepositories.top.com.githubrepositories.R;
@@ -31,7 +34,9 @@ public class GithubRepositoryListFragment extends Fragment  implements Injectabl
     private GithubRepositoryListFragmentBinding binding;
 
     private final GithubRepositoryModelClickCallback githubRepositoryModelClickCallback = githubRepositoryModel -> {
-
+        if (getLifecycle().getCurrentState().isAtLeast(Lifecycle.State.STARTED)) {
+            ((MainActivity) Objects.requireNonNull(getActivity())).show(githubRepositoryModel );
+        }
     };
 
 

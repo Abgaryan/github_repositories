@@ -1,8 +1,11 @@
 package githubrepositories.top.com.githubrepositories.model;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import java.util.Date;
 
-public class GithubRepositoryModel {
+public class GithubRepositoryModel implements Parcelable {
     public long id;
     public String name;
     public String full_name;
@@ -32,4 +35,77 @@ public class GithubRepositoryModel {
     public int watchers;
     public String default_branch;
 
+    protected GithubRepositoryModel(Parcel in) {
+        id = in.readLong();
+        name = in.readString();
+        full_name = in.readString();
+        owner = in.readParcelable(User.class.getClassLoader());
+        html_url = in.readString();
+        description = in.readString();
+        url = in.readString();
+        git_url = in.readString();
+        ssh_url = in.readString();
+        clone_url = in.readString();
+        svn_url = in.readString();
+        homepage = in.readString();
+        stargazers_count = in.readInt();
+        watchers_count = in.readInt();
+        language = in.readString();
+        has_issues = in.readByte() != 0;
+        has_downloads = in.readByte() != 0;
+        has_wiki = in.readByte() != 0;
+        has_pages = in.readByte() != 0;
+        forks_count = in.readInt();
+        open_issues_count = in.readInt();
+        forks = in.readInt();
+        open_issues = in.readInt();
+        watchers = in.readInt();
+        default_branch = in.readString();
+    }
+
+    public static final Creator<GithubRepositoryModel> CREATOR = new Creator<GithubRepositoryModel>() {
+        @Override
+        public GithubRepositoryModel createFromParcel(Parcel in) {
+            return new GithubRepositoryModel(in);
+        }
+
+        @Override
+        public GithubRepositoryModel[] newArray(int size) {
+            return new GithubRepositoryModel[size];
+        }
+    };
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel parcel, int i) {
+        parcel.writeLong(id);
+        parcel.writeString(name);
+        parcel.writeString(full_name);
+        parcel.writeParcelable(owner, i);
+        parcel.writeString(html_url);
+        parcel.writeString(description);
+        parcel.writeString(url);
+        parcel.writeString(git_url);
+        parcel.writeString(ssh_url);
+        parcel.writeString(clone_url);
+        parcel.writeString(svn_url);
+        parcel.writeString(homepage);
+        parcel.writeInt(stargazers_count);
+        parcel.writeInt(watchers_count);
+        parcel.writeString(language);
+        parcel.writeByte((byte) (has_issues ? 1 : 0));
+        parcel.writeByte((byte) (has_downloads ? 1 : 0));
+        parcel.writeByte((byte) (has_wiki ? 1 : 0));
+        parcel.writeByte((byte) (has_pages ? 1 : 0));
+        parcel.writeInt(forks_count);
+        parcel.writeInt(open_issues_count);
+        parcel.writeInt(forks);
+        parcel.writeInt(open_issues);
+        parcel.writeInt(watchers);
+        parcel.writeString(default_branch);
+    }
 }

@@ -46,4 +46,24 @@ public class GithubRepository {
     }
 
 
+    public LiveData<GithubRepositoryModel> getTopGithubRepoDetails(String user,String repoName) {
+        final MutableLiveData<GithubRepositoryModel> data = new MutableLiveData<>();
+
+        networkService.getGithubRepository(user,repoName).enqueue(new Callback<GithubRepositoryModel>() {
+            @Override
+            public void onResponse(@NonNull Call<GithubRepositoryModel> call, @NonNull Response<GithubRepositoryModel> response) {
+                if(response.body() != null){
+                    data.setValue(response.body());
+                }
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<GithubRepositoryModel> call, @NonNull Throwable t) {
+                data.setValue(null);
+            }
+
+        });
+
+        return data;
+    }
 }

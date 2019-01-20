@@ -1,14 +1,66 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable name="isLoading" type="boolean" />
+        <variable
+            name="githubRepositoryDetailsViewModel"
+            type="githubrepositories.top.com.githubrepositories.view_model.GithubRepositoryDetailsViewModel"/>
+    </data>
+<RelativeLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.ui.details.GithubRepositoryDetailsFragment">
-
-    <TextView
+    android:background="@color/cardview_light_background">
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="Hello"/>
+        android:layout_marginStart="@dimen/item_horizontal_margin"
+        android:layout_marginEnd="@dimen/item_horizontal_margin"
+        android:paddingTop="@dimen/activity_vertical_margin"
+        android:padding="5dp"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        app:visibleGone="@{!isLoading}">
+        <TextView
+            android:id="@+id/name"
+            android:layout_marginTop="@dimen/activity_vertical_margin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/repo_list"
+            android:textStyle="bold"
+            android:textSize="@dimen/repo_name"
+            android:text="@{githubRepositoryDetailsViewModel.githubRepositoryModelObservableField.name}"/>
+        <TextView
+            android:layout_marginStart="@dimen/item_horizontal_margin"
+            android:layout_marginTop="12dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/repo_watchers"
+            android:layout_gravity="center_vertical"
+            android:textSize="@dimen/text"
+            android:drawableStart="@android:drawable/star_off" android:padding="5dp"
+            android:text="@{String.format(@string/int_wrapper, githubRepositoryDetailsViewModel.githubRepositoryModelObservableField.watchers)}"/>
+        <TextView
+            android:id="@+id/desc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/item_horizontal_margin"
+            android:contentDescription="@string/repo_description"
+            android:textSize="@dimen/text"
+            android:text="@{githubRepositoryDetailsViewModel.githubRepositoryModelObservableField.description}"/>
+    </LinearLayout>
 
-</FrameLayout>
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_centerVertical="true"
+        android:gravity="center_vertical|center_horizontal"
+        app:visibleGone="@{isLoading}"/>
+</RelativeLayout>
+
+</layout>

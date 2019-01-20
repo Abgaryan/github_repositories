@@ -2,10 +2,12 @@ project.ext {
     appcompat = "1.1.0-alpha01"
     constraintlayout = "2.0.0-alpha3"
     lifecycle_extensions = "2.1.0-alpha01"
+    retrofit = "2.5.0"
     support = "1.0.0"
     junit = "4.12"
     runner = "1.1.1"
     espresso_core = "3.1.1"
+
 }
 
 apply plugin: 'com.android.application'
@@ -36,6 +38,10 @@ dependencies {
 
     // Arch
     implementation "androidx.lifecycle:lifecycle-extensions:$project.lifecycle_extensions"
+
+    // Retrofit
+    implementation "com.squareup.retrofit2:retrofit:$project.retrofit"
+    implementation "com.squareup.retrofit2:converter-gson:$project.retrofit"
 
 
     testImplementation "junit:junit:$project.junit"
